@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kickstand Logo</title>
+        <style>
+            * {
+                font-family: Montserrat, sans-serif;
+            }
+
+            .logo-container {
+                text-align: center;
+            }
+            #colorValue {
+
+            }
+
+            svg {
+                display: none;
+            }
+
+            #ksl2 {
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="logo-container">
+            <p><input type="radio" name="logo" value="ksl"/> <input type="radio" name="logo" value="ksl2" checked /></p>
+
+            <svg
+                width="512"
+                viewBox="0 0 121.10047 129.95836"
+                version="1.1"
+                id="ksl"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:svg="http://www.w3.org/2000/svg">
+                <defs
+                    id="defs2" />
+                <g
+                    id="layer1"
+                    transform="translate(-28.784618,-29.101913)">
+                    <g
+                        aria-label="K"
+                        transform="scale(1.0648707,-0.93908116)"
+                        id="text3950"
+                        style="font-size:130.852px;line-height:1.25;font-family:Mont;-inkscape-font-specification:Mont;stroke-width:3.27128" />
+                    <g
+                        aria-label="/"
+                        id="text13151"
+                        style="font-size:105.833px;line-height:1.25;font-family:Mont;-inkscape-font-specification:Mont;stroke-width:0.264583">
+                        <path
+                            d="M 54.601749,141.37558 H 42.748453 l 34.92489,-99.694684 h 11.853296 z"
+                            style="font-weight:600;font-family:Montserrat;-inkscape-font-specification:'Montserrat Semi-Bold'"
+                            id="path916" />
+                    </g>
+                    <g
+                        aria-label="k"
+                        id="text18545"
+                        style="font-size:105.833px;line-height:1.25;font-family:Mont;-inkscape-font-specification:Mont;stroke-width:0.264583">
+                        <path
+                            d="m 139.7974,130.79228 h -16.08662 l -19.57911,-24.23575 -9.842464,9.3133 v 14.92245 H 81.060081 V 87.189196 l 13.229125,-34.925 V 99.67738 L 121.69995,74.27746 h 15.87495 l -23.60076,23.706592 z"
+                            style="font-weight:600;font-family:Montserrat;-inkscape-font-specification:'Montserrat Semi-Bold'"
+                            id="path21679" />
+                    </g>
+                </g>
+            </svg>
+
+            <svg
+                width="512"
+                viewBox="0 0 81.523749 77.680001"
+                version="1.1"
+                id="ksl2"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:svg="http://www.w3.org/2000/svg">
+                <defs
+                    id="defs2" />
+                <g
+                    aria-label="K"
+                    transform="matrix(1.0648707,0,0,-0.93908116,-12.666788,-11.904636)"
+                    id="text3950"
+                    style="font-size:130.852px;line-height:1.25;font-family:Mont;-inkscape-font-specification:Mont;stroke-width:3.27128" />
+                <g
+                    aria-label="/"
+                    id="text13151"
+                    style="font-size:105.833px;line-height:1.25;font-family:Mont;-inkscape-font-specification:Mont;stroke-width:0.264583"
+                    transform="translate(-12.666788,-11.904636)" />
+                <g
+                    aria-label="/k"
+                    id="text12646"
+                    style="font-weight:600;font-size:40px;line-height:1.25;font-family:'Montserrat Alternates';-inkscape-font-specification:'Montserrat Alternates Semi-Bold'">
+                    <path
+                        d="m 24.480001,57.68 h -4.48 l 13.2,-37.68 h 4.48 z"
+                        id="path17889" />
+                    <path
+                        d="m 61.523751,53.68 h -6.08 l -7.4,-9.16 -3.72,3.52 v 5.64 h -5 V 24 h 5 v 17.92 l 10.36,-9.6 h 6 l -8.92,8.96 z"
+                        id="path17891" />
+                </g>
+            </svg>
+
+            <p><input type="color" size="10" id="color" /> <span id="colorValue" /></p>
+        </div>
+        <script>
+            const color = document.getElementById('color');
+            const logo = document.getElementById('ksl');
+            const logo2 = document.getElementById('ksl2');
+            const colorValueP = document.getElementById('colorValue');
+            const radio = document.getElementsByName('logo');
+
+            radio.forEach((radio) => radio.addEventListener('change', (event) => {
+                logo.style.display = 'none';
+                logo2.style.display = 'none';
+                const choice = event.currentTarget.checked && event.target.value;
+                choice && (document.getElementById(choice).style.display = 'inline-block');
+            }));
+
+            color.addEventListener('change', (event) => {
+                const colorValue = color.value;
+                logo.setAttribute('fill', colorValue);
+                logo2.setAttribute('fill', colorValue);
+                colorValueP.innerHTML = colorValue;
+            });
+        </script>
+    </body>
+</html>
