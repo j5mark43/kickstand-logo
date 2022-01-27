@@ -106,6 +106,16 @@
             const colorValueP = document.getElementById('colorValue');
             const radio = document.getElementsByName('logo');
 
+            const fill = window.location.hash.length > 1 ? window.location.hash : '#000';
+            color.value = fill;
+
+            const setColors = (colorValue) => {
+                logo.setAttribute('fill', colorValue);
+                logo2.setAttribute('fill', colorValue);
+            };
+
+            setColors(fill);
+
             radio.forEach((radio) => radio.addEventListener('change', (event) => {
                 logo.style.display = 'none';
                 logo2.style.display = 'none';
@@ -115,9 +125,9 @@
 
             color.addEventListener('change', (event) => {
                 const colorValue = color.value;
-                logo.setAttribute('fill', colorValue);
-                logo2.setAttribute('fill', colorValue);
-                colorValueP.innerHTML = colorValue;
+                window.location.hash = colorValue;
+                setColors(colorValue);
+                colorValueP.innerHTML = `<a href="${colorValue}">${colorValue}</a>`;
             });
         </script>
     </body>
