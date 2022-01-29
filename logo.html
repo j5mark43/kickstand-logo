@@ -37,6 +37,28 @@
             cursor: pointer;
         }
 
+        .light, .dark {
+            display: inline-block;
+            vertical-align: middle;
+            width: 2em;
+            height: 2em;
+            appearance: none;
+            border-radius: 50%;
+            border: solid 2px var(--color-logo);
+            cursor: pointer;
+        }
+        .light + .dark {
+            margin-left: 5px;
+        }
+
+        .light {
+            background-color: #fff;
+        }
+        .dark {
+            appearance: none;
+            background-color: #333;
+        }
+
         .button-container {
             margin-left: 1.5em;
         }
@@ -89,6 +111,7 @@
     <div id="svg-container"></div>
 
     <p><input type="color" size="10" id="color"/> <a id="color-link">color</a></p>
+    <p><button class="light" id="light-mode" /> <button class="dark" id="dark-mode" /></p>
 </div>
 <script src="logo.js"></script>
 </body>

@@ -5,7 +5,16 @@
     const radios = document.getElementById('radio-container');
     const openFile = document.getElementById('open-file');
     const svgs = document.getElementById('svg-container');
+    const light = document.getElementById('light-mode');
+    const dark = document.getElementById('dark-mode');
+
     const bodyStyles = document.body.style;
+
+    [light, dark].forEach((mode) => {
+        mode.addEventListener('click', () => {
+            bodyStyles.backgroundColor = getComputedStyle(mode).backgroundColor;
+        });
+    });
 
     let previousChoice = 'ksl2';
     let logoIndex = 3;
@@ -51,7 +60,7 @@
         svgs.appendChild(div);
     });
 
-    openFile.addEventListener('click', async (event) => {
+    openFile.addEventListener('click', async () => {
         const fileHandles = await window.showOpenFilePicker(
             {
                 types: [
@@ -74,17 +83,9 @@
         });
     });
 
-    const addLogo = async (handle) => {
-        const file = handle.getFile();
-        const source = await file
-            .then(
-                (file) => file.text()
-            )
-            .then(
-                (source) => source.replace(/<\?xml(.*)\?>/i, '')
-            );
+    const addLogoFromSource = (source) => {
         const div = document.createElement('div');
-        div.innerHTML = source;
+        div.innerHTML = source.replace(/<\?xml(.*)\?>/i, '');
         const svg = div.querySelector('svg');
         svg.id = `ksl${logoIndex}`;
         svg.removeAttribute('width');
@@ -98,10 +99,20 @@
         radio.type = 'radio';
         radio.name = 'logo';
         radio.value = svg.id;
+        radio.localFile = true;
         radio.checked = true;
         radio.addEventListener('change', radioChangeHandler);
-        radioChangeHandler({ currentTarget: radio })
         radios.appendChild(radio);
+        radioChangeHandler({ currentTarget: radio })
+    };
+
+    const addLogo = async (handle) => {
+        const file = handle.getFile();
+        const source = await file
+            .then(
+                (file) => file.text()
+            )
+        addLogoFromSource(source);
     };
 
     const setColors = (colorValue) => {
@@ -111,15 +122,26 @@
         colorLink.href = colorValue;
     };
 
-    const fill = window.location.hash.length > 1 ? window.location.hash : colorValueHex;
+    const logosFromHash = () => {
+        const logos = window.location.hash.split(/\//g).slice(1);
+
+        logos.forEach((logo) => {
+            const source = atob(logo);
+            addLogoFromSource(source);
+        });
+    };
+
+    let fill = window.location.hash.length > 1 ? window.location.hash.split(/\//g)[0] : colorValueHex;
     color.value = fill;
     setColors(fill);
 
     const radioChangeHandler = (event) => {
         document.getElementById(previousChoice).style.display = 'none';
         const choice = event.currentTarget.checked && event.currentTarget.value;
-        choice && (document.getElementById(choice).style.display = 'inline-block');
+        const logo = document.getElementById(choice);
+        logo && (logo.style.display = 'inline-block');
         previousChoice = choice;
+        window.location.hash = event.currentTarget.localFile ? `${fill}/${btoa(logo.outerHTML)}` : fill;
     };
 
     radio.forEach((radio, index) => {
@@ -130,9 +152,11 @@
         radio.addEventListener('change', radioChangeHandler);
     });
 
-    color.addEventListener('change', (event) => {
-        const colorValue = color.value;
-        window.location.hash = colorValue;
-        setColors(colorValue);
+    color.addEventListener('change', () => {
+        window.location.hash = window.location.hash.length > 1 ? window.location.hash.toString().replace(fill, color.value) : color.value;
+        fill = color.value;
+        setColors(fill);
     });
+
+    logosFromHash();
 }());
