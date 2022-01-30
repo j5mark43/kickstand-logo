@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   viewBox="0 0 41.52375 37.680001"
+   version="1.1"
+   id="ksl"
+   width="41.52375"
+   height="37.68"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     aria-label="K"
+     transform="matrix(1.0648707,0,0,-0.93908116,-32.666789,-31.904636)"
+     id="text3950"
+     style="font-size:130.852px;line-height:1.25;font-family:Mont;-inkscape-font-specification:Mont;stroke-width:3.27128" />
+  <g
+     aria-label="/"
+     id="text13151"
+     style="font-size:105.833px;line-height:1.25;font-family:Mont;-inkscape-font-specification:Mont;stroke-width:0.264583"
+     transform="translate(-32.666789,-31.904636)" />
+  <g
+     aria-label="/k"
+     id="text12646"
+     style="font-weight:600;font-size:40px;line-height:1.25;font-family:'Montserrat Alternates';-inkscape-font-specification:'Montserrat Alternates Semi-Bold';fill:#ffb20f;fill-opacity:1">
+    <path
+       d="M 4.48,37.68 H 4.7683716e-8 L 13.2,3.0517578e-7 h 4.48 z"
+       id="path943"
+       style="fill:#ffb20f;fill-opacity:1" />
+    <path
+       d="m 41.52375,33.68 h -6.08 l -7.4,-9.16 -3.72,3.52 v 5.64 h -5 V 4.0000003 h 5 V 21.92 l 10.36,-9.6 h 6 l -8.92,8.96 z"
+       id="path945"
+       style="fill:#ffb20f;fill-opacity:1" />
+  </g>
+</svg>
